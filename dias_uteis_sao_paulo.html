@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dias Úteis - São Paulo</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#17202a}
+.card{max-width:760px;margin:0 auto;padding:22px}
+h1{font-size:24px;margin:0 0 5px}.sub{color:#667085;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.box{background:#fff;border-radius:12px;padding:18px;text-align:center;box-shadow:0 1px 5px #0001}
+.label{font-size:13px;color:#667085}.num{font-size:32px;font-weight:700;margin-top:6px}
+.footer{margin-top:15px;background:#fff;border-radius:10px;padding:12px;font-size:12px;color:#667085}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="card">
+<h1 id="titulo">Dias Úteis</h1>
+<div class="sub">São Paulo — <span id="data"></span></div>
+<div class="grid">
+<div class="box"><div class="label">Dias úteis no mês</div><div class="num" id="total">-</div></div>
+<div class="box"><div class="label">Dias úteis decorridos</div><div class="num" id="decorridos">-</div></div>
+<div class="box"><div class="label">Dias úteis restantes</div><div class="num" id="restantes">-</div></div>
+</div>
+<div class="footer">Cálculo: segunda a sexta, descontando os feriados oficiais de São Paulo. Atualização automática conforme o mês atual.</div>
+</div>
+<script>
+const feriados = [
+"2026-01-01","2026-01-25","2026-04-03","2026-04-21","2026-05-01",
+"2026-06-04","2026-07-09","2026-09-07","2026-10-12","2026-11-02",
+"2026-11-15","2026-11-20","2026-12-25"
+];
+
+const nomes=["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+const agora=new Date();
+const ano=agora.getFullYear(), mes=agora.getMonth();
+
+function iso(d){
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+function util(d){
+ const dia=d.getDay();
+ return dia!==0 && dia!==6 && !feriados.includes(iso(d));
+}
+let total=0,decorridos=0;
+const ultimo=new Date(ano,mes+1,0).getDate();
+
+for(let i=1;i<=ultimo;i++){
+ const d=new Date(ano,mes,i);
+ if(util(d)){
+   total++;
+   if(i<=agora.getDate()) decorridos++;
+ }
+}
+document.getElementById("titulo").textContent="Dias Úteis — "+nomes[mes]+" "+ano;
+document.getElementById("data").textContent=String(agora.getDate()).padStart(2,"0")+"/"+String(mes+1).padStart(2,"0")+"/"+ano;
+document.getElementById("total").textContent=total;
+document.getElementById("decorridos").textContent=decorridos;
+document.getElementById("restantes").textContent=total-decorridos;
+</script>
+</body>
+</html>
