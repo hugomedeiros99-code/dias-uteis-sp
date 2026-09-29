@@ -6,263 +6,447 @@
 <title>Dias Úteis - São Paulo</title>
 
 <style>
-*{box-sizing:border-box}
-
-html,body{
-  margin:0;
-  padding:0;
+* {
+  box-sizing: border-box;
 }
 
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:transparent;
-  color:#fff;
-  overflow:hidden;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.painel{
-  width:100%;
-  min-height:150px;
-  padding:12px 18px 10px;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #30313f;
+  color: #ffffff;
+  overflow: hidden;
 }
 
-.cabecalho{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:12px;
+.painel {
+  width: 100%;
+  height: 100%;
+  padding: 12px 16px 10px;
 }
 
-.titulo{
-  font-size:16px;
-  font-weight:700;
-  letter-spacing:.2px;
-  text-transform:uppercase;
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.data{
-  font-size:12px;
-  opacity:.75;
-  white-space:nowrap;
+.titulo {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
+.data {
+  font-size: 11px;
+  opacity: 0.75;
 }
 
-.box{
-  min-height:62px;
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:8px;
-  background:rgba(255,255,255,.06);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
 
-.numero{
-  font-size:28px;
-  line-height:30px;
-  font-weight:800;
+.card {
+  background: #3a3b4a;
+  border: 1px solid #55576a;
+  border-radius: 7px;
+  height: 62px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.rotulo{
-  font-size:10px;
-  margin-top:3px;
-  opacity:.72;
-  text-transform:uppercase;
-  letter-spacing:.5px;
+.numero {
+  font-size: 27px;
+  line-height: 28px;
+  font-weight: 800;
 }
 
-.progresso{
-  margin-top:10px;
-  height:7px;
-  width:100%;
-  border-radius:99px;
-  background:rgba(255,255,255,.12);
-  overflow:hidden;
+.rotulo {
+  margin-top: 3px;
+  font-size: 9px;
+  font-weight: 600;
+  color: #bfc2d0;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 
-.barra{
-  height:100%;
-  border-radius:99px;
-  background:#57d68a;
-  transition:width .3s ease;
+.barra-fundo {
+  width: 100%;
+  height: 6px;
+  margin-top: 9px;
+  border-radius: 8px;
+  background: #55576a;
+  overflow: hidden;
 }
 
-.rodape{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:5px;
-  font-size:10px;
-  opacity:.65;
+.barra {
+  height: 100%;
+  width: 0%;
+  border-radius: 8px;
+  background: #43d58a;
+  transition: width 0.3s ease;
 }
 
-@media(max-width:520px){
-  .painel{padding:10px}
-  .titulo{font-size:14px}
-  .data{font-size:10px}
-  .numero{font-size:24px}
-  .rotulo{font-size:9px}
+.rodape {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: 9px;
+  color: #aeb1c0;
+}
+
+@media (max-width: 520px) {
+
+  .painel {
+    padding: 9px 10px;
+  }
+
+  .titulo {
+    font-size: 13px;
+  }
+
+  .numero {
+    font-size: 24px;
+  }
+
 }
 </style>
-
 </head>
 
 <body>
 
 <div class="painel">
 
-  <div class="cabecalho">
+  <div class="topo">
+
     <div class="titulo" id="titulo">
       DIAS ÚTEIS
     </div>
 
     <div class="data" id="data"></div>
+
   </div>
+
 
   <div class="grid">
 
-    <div class="box">
-      <div class="numero" id="total">-</div>
-      <div class="rotulo">Úteis</div>
+    <div class="card">
+
+      <div class="numero" id="total">
+        -
+      </div>
+
+      <div class="rotulo">
+        Úteis no mês
+      </div>
+
     </div>
 
-    <div class="box">
-      <div class="numero" id="decorridos">-</div>
-      <div class="rotulo">Decorridos</div>
+
+    <div class="card">
+
+      <div class="numero" id="decorridos">
+        -
+      </div>
+
+      <div class="rotulo">
+        Decorridos
+      </div>
+
     </div>
 
-    <div class="box">
-      <div class="numero" id="restantes">-</div>
-      <div class="rotulo">Restantes</div>
+
+    <div class="card">
+
+      <div class="numero" id="restantes">
+        -
+      </div>
+
+      <div class="rotulo">
+        Restantes
+      </div>
+
     </div>
 
   </div>
 
-  <div class="progresso">
-    <div class="barra" id="barra"></div>
+
+  <div class="barra-fundo">
+
+    <div
+      class="barra"
+      id="barra">
+    </div>
+
   </div>
+
 
   <div class="rodape">
-    <span id="percentual">0% do mês útil</span>
-    <span>São Paulo • SP</span>
+
+    <span id="percentual">
+      0% do mês útil
+    </span>
+
+    <span>
+      São Paulo • SP
+    </span>
+
   </div>
 
 </div>
 
+
 <script>
 
-const meses=[
-  "JAN","FEV","MAR","ABR","MAI","JUN",
-  "JUL","AGO","SET","OUT","NOV","DEZ"
+const meses = [
+  "JAN",
+  "FEV",
+  "MAR",
+  "ABR",
+  "MAI",
+  "JUN",
+  "JUL",
+  "AGO",
+  "SET",
+  "OUT",
+  "NOV",
+  "DEZ"
 ];
 
-function pascoa(ano){
 
-  const a=ano%19;
-  const b=Math.floor(ano/100);
-  const c=ano%100;
-  const d=Math.floor(b/4);
-  const e=b%4;
-  const f=Math.floor((b+8)/25);
-  const g=Math.floor((b-f+1)/3);
-  const h=(19*a+b-d-g+15)%30;
-  const i=Math.floor(c/4);
-  const k=c%4;
-  const l=(32+2*e+2*i-h-k)%7;
-  const m=Math.floor((a+11*h+22*l)/451);
+function pascoa(ano) {
 
-  const mes=Math.floor((h+l-7*m+114)/31);
+  const a = ano % 19;
 
-  const dia=((h+l-7*m+114)%31)+1;
+  const b = Math.floor(ano / 100);
 
-  return new Date(ano,mes-1,dia);
+  const c = ano % 100;
+
+  const d = Math.floor(b / 4);
+
+  const e = b % 4;
+
+  const f = Math.floor((b + 8) / 25);
+
+  const g = Math.floor((b - f + 1) / 3);
+
+  const h =
+    (19 * a + b - d - g + 15) % 30;
+
+  const i =
+    Math.floor(c / 4);
+
+  const k =
+    c % 4;
+
+  const l =
+    (32 + 2 * e + 2 * i - h - k) % 7;
+
+  const m =
+    Math.floor((a + 11 * h + 22 * l) / 451);
+
+  const mes =
+    Math.floor(
+      (h + l - 7 * m + 114) / 31
+    );
+
+  const dia =
+    ((h + l - 7 * m + 114) % 31) + 1;
+
+  return new Date(
+    ano,
+    mes - 1,
+    dia
+  );
 }
 
-function addDias(data,n){
 
-  const d=new Date(data);
+function addDias(data, quantidade) {
 
-  d.setDate(d.getDate()+n);
+  const d = new Date(data);
+
+  d.setDate(
+    d.getDate() + quantidade
+  );
 
   return d;
 }
 
-function chave(d){
 
-  return d.getFullYear()+"-"+
-    String(d.getMonth()+1).padStart(2,"0")+"-"+
-    String(d.getDate()).padStart(2,"0");
+function chave(data) {
+
+  return (
+    data.getFullYear() +
+    "-" +
+    String(
+      data.getMonth() + 1
+    ).padStart(2, "0") +
+    "-" +
+    String(
+      data.getDate()
+    ).padStart(2, "0")
+  );
+
 }
 
-function feriadosSP(ano){
 
-  const lista=[
+function feriadosSP(ano) {
+
+  const lista = [
 
     `${ano}-01-01`,
+
     `${ano}-01-25`,
+
     `${ano}-04-21`,
+
     `${ano}-05-01`,
+
     `${ano}-07-09`,
+
     `${ano}-09-07`,
+
     `${ano}-10-12`,
+
     `${ano}-11-02`,
+
     `${ano}-11-15`,
+
     `${ano}-11-20`,
+
     `${ano}-12-25`
 
   ];
 
-  const p=pascoa(ano);
 
-  lista.push(chave(addDias(p,-2)));
+  const pascoaData =
+    pascoa(ano);
 
-  lista.push(chave(addDias(p,60)));
+
+  /*
+    Sexta-feira Santa
+  */
+
+  lista.push(
+    chave(
+      addDias(
+        pascoaData,
+        -2
+      )
+    )
+  );
+
+
+  /*
+    Corpus Christi
+  */
+
+  lista.push(
+    chave(
+      addDias(
+        pascoaData,
+        60
+      )
+    )
+  );
+
 
   return new Set(lista);
+
 }
 
-function ehUtil(d,feriados){
 
-  const dia=d.getDay();
+function ehDiaUtil(
+  data,
+  feriados
+) {
 
-  return dia!==0 &&
-         dia!==6 &&
-         !feriados.has(chave(d));
+  const dia =
+    data.getDay();
+
+
+  return (
+    dia !== 0 &&
+    dia !== 6 &&
+    !feriados.has(
+      chave(data)
+    )
+  );
+
 }
 
-function calcular(){
 
-  const agora=new Date();
+function calcular() {
 
-  const ano=agora.getFullYear();
+  const agora =
+    new Date();
 
-  const mes=agora.getMonth();
 
-  const feriados=feriadosSP(ano);
+  const ano =
+    agora.getFullYear();
 
-  const ultimo=
-    new Date(ano,mes+1,0).getDate();
 
-  let total=0;
+  const mes =
+    agora.getMonth();
 
-  let decorridos=0;
 
-  for(let i=1;i<=ultimo;i++){
+  const feriados =
+    feriadosSP(ano);
 
-    const d=new Date(ano,mes,i);
 
-    if(ehUtil(d,feriados)){
+  const ultimoDia =
+    new Date(
+      ano,
+      mes + 1,
+      0
+    ).getDate();
+
+
+  let total = 0;
+
+  let decorridos = 0;
+
+
+  for (
+    let dia = 1;
+    dia <= ultimoDia;
+    dia++
+  ) {
+
+    const data =
+      new Date(
+        ano,
+        mes,
+        dia
+      );
+
+
+    if (
+      ehDiaUtil(
+        data,
+        feriados
+      )
+    ) {
 
       total++;
 
-      if(i<=agora.getDate()){
+
+      if (
+        dia <=
+        agora.getDate()
+      ) {
 
         decorridos++;
 
@@ -272,40 +456,103 @@ function calcular(){
 
   }
 
-  const restantes=
-    total-decorridos;
 
-  const percentual=
-    total ? (decorridos/total)*100 : 0;
+  const restantes =
+    total - decorridos;
 
-  document.getElementById("titulo").textContent=
-    `DIAS ÚTEIS • ${meses[mes]}/${ano}`;
 
-  document.getElementById("data").textContent=
-    `${String(agora.getDate()).padStart(2,"0")}/`+
-    `${String(mes+1).padStart(2,"0")}/`+
-    `${ano}`;
+  const percentual =
+    total > 0
+      ? (
+          decorridos /
+          total
+        ) * 100
+      : 0;
 
-  document.getElementById("total").textContent=
-    total;
 
-  document.getElementById("decorridos").textContent=
-    decorridos;
+  document
+    .getElementById(
+      "titulo"
+    )
+    .textContent =
+      `DIAS ÚTEIS • ${meses[mes]}/${ano}`;
 
-  document.getElementById("restantes").textContent=
-    restantes;
 
-  document.getElementById("percentual").textContent=
-    `${percentual.toFixed(1).replace(".",",")}% do mês útil`;
+  document
+    .getElementById(
+      "data"
+    )
+    .textContent =
+      `${String(
+        agora.getDate()
+      ).padStart(2, "0")}/` +
+      `${String(
+        mes + 1
+      ).padStart(2, "0")}/` +
+      `${ano}`;
 
-  document.getElementById("barra").style.width=
-    percentual+"%";
+
+  document
+    .getElementById(
+      "total"
+    )
+    .textContent =
+      total;
+
+
+  document
+    .getElementById(
+      "decorridos"
+    )
+    .textContent =
+      decorridos;
+
+
+  document
+    .getElementById(
+      "restantes"
+    )
+    .textContent =
+      restantes;
+
+
+  document
+    .getElementById(
+      "percentual"
+    )
+    .textContent =
+      `${percentual
+        .toFixed(1)
+        .replace(".", ",")
+      }% do mês útil`;
+
+
+  document
+    .getElementById(
+      "barra"
+    )
+    .style
+    .width =
+      percentual + "%";
 
 }
 
+
+/*
+  Calcula ao abrir
+*/
+
 calcular();
 
-setInterval(calcular,60000);
+
+/*
+  Atualiza a cada minuto
+*/
+
+setInterval(
+  calcular,
+  60000
+);
 
 </script>
 
