@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Dias Úteis - São Paulo</title>
 
 <style>
 
+* {
+    box-sizing: border-box;
+}
+
 html,
 body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #30313f;
     color: #ffffff;
-    overflow: hidden;
 }
 
 .painel {
     width: 100%;
     padding: 12px 16px;
     background: #30313f;
-    color: #ffffff;
 }
 
 .cabecalho {
@@ -43,10 +45,11 @@ body {
     color: #ffffff;
     font-size: 15px;
     font-weight: bold;
+    letter-spacing: 0.3px;
 }
 
 .data {
-    color: #bfc2d0;
+    color: #c3c5d0;
     font-size: 11px;
 }
 
@@ -58,6 +61,7 @@ body {
 
 .indicador {
     flex: 1;
+    min-width: 0;
     height: 62px;
     background: #3a3b4a;
     border: 1px solid #55576a;
@@ -95,15 +99,17 @@ body {
 
 .barra {
     height: 6px;
-    width: 95%;
+    width: 0%;
     background: #43d58a;
     border-radius: 10px;
+    transition: width 0.5s ease;
 }
 
 .rodape {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 5px;
 }
 
@@ -112,8 +118,34 @@ body {
     font-size: 9px;
 }
 
-</style>
+@media (max-width: 500px) {
 
+    .painel {
+        padding: 10px;
+    }
+
+    .titulo {
+        font-size: 13px;
+    }
+
+    .data {
+        font-size: 10px;
+    }
+
+    .indicador {
+        height: 58px;
+    }
+
+    .numero {
+        font-size: 23px;
+    }
+
+    .rotulo {
+        font-size: 8px;
+    }
+}
+
+</style>
 </head>
 
 <body>
@@ -122,18 +154,12 @@ body {
 
     <div class="cabecalho">
 
-        <div
-            class="titulo"
-            id="titulo"
-        >
-            DIAS ÚTEIS • SET/2026
+        <div class="titulo" id="titulo">
+            DIAS ÚTEIS
         </div>
 
-        <div
-            class="data"
-            id="data"
-        >
-            29/09/2026
+        <div class="data" id="data">
+            --
         </div>
 
     </div>
@@ -143,11 +169,8 @@ body {
 
         <div class="indicador">
 
-            <div
-                class="numero"
-                id="total"
-            >
-                21
+            <div class="numero" id="total">
+                0
             </div>
 
             <div class="rotulo">
@@ -159,11 +182,8 @@ body {
 
         <div class="indicador">
 
-            <div
-                class="numero"
-                id="decorridos"
-            >
-                20
+            <div class="numero" id="decorridos">
+                0
             </div>
 
             <div class="rotulo">
@@ -175,11 +195,8 @@ body {
 
         <div class="indicador">
 
-            <div
-                class="numero"
-                id="restantes"
-            >
-                1
+            <div class="numero" id="restantes">
+                0
             </div>
 
             <div class="rotulo">
@@ -195,8 +212,8 @@ body {
 
         <div
             class="barra"
-            id="barra"
-        ></div>
+            id="barra">
+        </div>
 
     </div>
 
@@ -204,7 +221,7 @@ body {
     <div class="rodape">
 
         <span id="percentual">
-            95,2% do mês útil
+            0,0% do mês útil
         </span>
 
         <span>
@@ -218,11 +235,11 @@ body {
 
 <script>
 
-/* =====================================================
-   MESES
-   ===================================================== */
+/* =========================================================
+   CONFIGURAÇÃO
+   ========================================================= */
 
-const meses = [
+const MESES = [
     "JAN",
     "FEV",
     "MAR",
@@ -238,9 +255,9 @@ const meses = [
 ];
 
 
-/* =====================================================
-   PÁSCOA
-   ===================================================== */
+/* =========================================================
+   CALCULAR PÁSCOA
+   ========================================================= */
 
 function calcularPascoa(ano) {
 
@@ -256,9 +273,7 @@ function calcularPascoa(ano) {
 
     const f = Math.floor((b + 8) / 25);
 
-    const g = Math.floor(
-        (b - f + 1) / 3
-    );
+    const g = Math.floor((b - f + 1) / 3);
 
     const h =
         (
@@ -284,31 +299,17 @@ function calcularPascoa(ano) {
 
     const m =
         Math.floor(
-            (
-                a +
-                11 * h +
-                22 * l
-            ) / 451
+            (a + 11 * h + 22 * l) / 451
         );
 
     const mes =
         Math.floor(
-            (
-                h +
-                l -
-                7 * m +
-                114
-            ) / 31
+            (h + l - 7 * m + 114) / 31
         );
 
     const dia =
         (
-            (
-                h +
-                l -
-                7 * m +
-                114
-            ) % 31
+            (h + l - 7 * m + 114) % 31
         ) + 1;
 
     return new Date(
@@ -319,9 +320,9 @@ function calcularPascoa(ano) {
 }
 
 
-/* =====================================================
+/* =========================================================
    ADICIONAR DIAS
-   ===================================================== */
+   ========================================================= */
 
 function adicionarDias(data, quantidade) {
 
@@ -329,17 +330,16 @@ function adicionarDias(data, quantidade) {
         new Date(data);
 
     novaData.setDate(
-        novaData.getDate() +
-        quantidade
+        novaData.getDate() + quantidade
     );
 
     return novaData;
 }
 
 
-/* =====================================================
-   DATA YYYY-MM-DD
-   ===================================================== */
+/* =========================================================
+   TRANSFORMAR DATA EM TEXTO
+   ========================================================= */
 
 function chave(data) {
 
@@ -357,58 +357,72 @@ function chave(data) {
 }
 
 
-/* =====================================================
+/* =========================================================
    FERIADOS DE SÃO PAULO
-   ===================================================== */
+   ========================================================= */
 
 function obterFeriados(ano) {
 
     const feriados = [
 
-        /* Nacionais */
+        /* FERIADOS NACIONAIS */
 
-        `${ano}-01-01`,
-        `${ano}-04-21`,
-        `${ano}-05-01`,
-        `${ano}-09-07`,
-        `${ano}-10-12`,
-        `${ano}-11-02`,
-        `${ano}-11-15`,
-        `${ano}-11-20`,
-        `${ano}-12-25`,
+        `${ano}-01-01`,  // Confraternização Universal
 
-        /* São Paulo */
+        `${ano}-04-21`,  // Tiradentes
 
-        `${ano}-01-25`,
-        `${ano}-07-09`
+        `${ano}-05-01`,  // Dia do Trabalho
+
+        `${ano}-09-07`,  // Independência
+
+        `${ano}-10-12`,  // Nossa Senhora Aparecida
+
+        `${ano}-11-02`,  // Finados
+
+        `${ano}-11-15`,  // Proclamação da República
+
+        `${ano}-11-20`,  // Consciência Negra
+
+        `${ano}-12-25`,  // Natal
+
+
+        /* SÃO PAULO */
+
+        `${ano}-01-25`,  // Aniversário de São Paulo
+
+        `${ano}-07-09`   // Revolução Constitucionalista
     ];
 
+
+    /* PÁSCOA */
 
     const pascoa =
         calcularPascoa(ano);
 
 
-    /* Sexta-feira Santa */
+    /* SEXTA-FEIRA SANTA */
+
+    const sextaFeiraSanta =
+        adicionarDias(
+            pascoa,
+            -2
+        );
 
     feriados.push(
-        chave(
-            adicionarDias(
-                pascoa,
-                -2
-            )
-        )
+        chave(sextaFeiraSanta)
     );
 
 
-    /* Corpus Christi */
+    /* CORPUS CHRISTI */
+
+    const corpusChristi =
+        adicionarDias(
+            pascoa,
+            60
+        );
 
     feriados.push(
-        chave(
-            adicionarDias(
-                pascoa,
-                60
-            )
-        )
+        chave(corpusChristi)
     );
 
 
@@ -416,39 +430,51 @@ function obterFeriados(ano) {
 }
 
 
-/* =====================================================
-   VERIFICA DIA ÚTIL
-   ===================================================== */
+/* =========================================================
+   VERIFICAR DIA ÚTIL
+   ========================================================= */
 
-function ehDiaUtil(data, feriados) {
+function ehDiaUtil(
+    data,
+    feriados
+) {
 
     const diaSemana =
         data.getDay();
 
-    if (
-        diaSemana === 0 ||
-        diaSemana === 6
-    ) {
 
+    /* DOMINGO */
+
+    if (diaSemana === 0) {
         return false;
     }
+
+
+    /* SÁBADO */
+
+    if (diaSemana === 6) {
+        return false;
+    }
+
+
+    /* FERIADO */
 
     if (
         feriados.has(
             chave(data)
         )
     ) {
-
         return false;
     }
+
 
     return true;
 }
 
 
-/* =====================================================
-   CALCULAR
-   ===================================================== */
+/* =========================================================
+   ATUALIZAR PAINEL
+   ========================================================= */
 
 function atualizar() {
 
@@ -472,6 +498,10 @@ function atualizar() {
         obterFeriados(ano);
 
 
+    /*
+       Último dia do mês
+    */
+
     const ultimoDia =
         new Date(
             ano,
@@ -480,10 +510,18 @@ function atualizar() {
         ).getDate();
 
 
-    let total = 0;
+    let total =
+        0;
 
-    let decorridos = 0;
 
+    let decorridos =
+        0;
+
+
+    /*
+       Percorre todos os dias
+       do mês atual
+    */
 
     for (
         let i = 1;
@@ -509,6 +547,11 @@ function atualizar() {
             total++;
 
 
+            /*
+               Conta os dias úteis
+               até hoje
+            */
+
             if (
                 i <= dia
             ) {
@@ -522,32 +565,44 @@ function atualizar() {
     }
 
 
-    const restantes =
-        total -
-        decorridos;
+    /*
+       Dias úteis restantes
+    */
 
+    const restantes =
+        Math.max(
+            total - decorridos,
+            0
+        );
+
+
+    /*
+       Percentual do mês útil
+    */
 
     const percentual =
         total > 0
-            ? (
-                decorridos /
-                total
-            ) * 100
+            ? (decorridos / total) * 100
             : 0;
 
 
-    document
-        .getElementById("titulo")
-        .textContent =
+    /* =====================================================
+       ATUALIZAÇÃO DA TELA
+       ===================================================== */
+
+
+    document.getElementById(
+        "titulo"
+    ).textContent =
         "DIAS ÚTEIS • " +
-        meses[mes] +
+        MESES[mes] +
         "/" +
         ano;
 
 
-    document
-        .getElementById("data")
-        .textContent =
+    document.getElementById(
+        "data"
+    ).textContent =
         String(dia).padStart(2, "0") +
         "/" +
         String(mes + 1).padStart(2, "0") +
@@ -555,52 +610,51 @@ function atualizar() {
         ano;
 
 
-    document
-        .getElementById("total")
-        .textContent =
+    document.getElementById(
+        "total"
+    ).textContent =
         total;
 
 
-    document
-        .getElementById("decorridos")
-        .textContent =
+    document.getElementById(
+        "decorridos"
+    ).textContent =
         decorridos;
 
 
-    document
-        .getElementById("restantes")
-        .textContent =
+    document.getElementById(
+        "restantes"
+    ).textContent =
         restantes;
 
 
-    document
-        .getElementById("percentual")
-        .textContent =
+    document.getElementById(
+        "percentual"
+    ).textContent =
         percentual
             .toFixed(1)
             .replace(".", ",") +
         "% do mês útil";
 
 
-    document
-        .getElementById("barra")
-        .style
-        .width =
+    document.getElementById(
+        "barra"
+    ).style.width =
         percentual + "%";
 
 }
 
 
-/* =====================================================
-   EXECUTA AGORA
-   ===================================================== */
+/* =========================================================
+   EXECUTA IMEDIATAMENTE
+   ========================================================= */
 
 atualizar();
 
 
-/* =====================================================
-   ATUALIZA A CADA 1 MINUTO
-   ===================================================== */
+/* =========================================================
+   ATUALIZA AUTOMATICAMENTE A CADA 1 MINUTO
+   ========================================================= */
 
 setInterval(
     atualizar,
@@ -610,5 +664,4 @@ setInterval(
 </script>
 
 </body>
-
 </html>
