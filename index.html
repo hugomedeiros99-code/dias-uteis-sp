@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<title>Dias Úteis - São Paulo</title>
+<title>Meta Comercial - Dias Úteis</title>
 
 <style>
+
+/* =========================================================
+   CONFIGURAÇÃO GERAL
+   ========================================================= */
 
 * {
     box-sizing: border-box;
@@ -27,45 +34,96 @@ body {
     color: #ffffff;
 }
 
+
+/* =========================================================
+   PAINEL
+   ========================================================= */
+
 .painel {
     width: 100%;
-    padding: 12px 16px;
+    padding: 10px 14px;
     background: #30313f;
 }
 
-.cabecalho {
-    width: 100%;
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
+.topo {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .titulo {
-    color: #ffffff;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
-    letter-spacing: 0.3px;
+    color: #ffffff;
 }
 
 .data {
-    color: #c3c5d0;
-    font-size: 11px;
+    font-size: 10px;
+    color: #bfc2d0;
 }
 
-.indicadores {
-    width: 100%;
-    display: flex;
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
+.campos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
+    margin-bottom: 8px;
+}
+
+.campo {
+    background: #3a3b4a;
+    border: 1px solid #55576a;
+    border-radius: 6px;
+    padding: 7px 9px;
+}
+
+.campo label {
+    display: block;
+    font-size: 8px;
+    font-weight: bold;
+    color: #bfc2d0;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.campo input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: #292a37;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 6px 7px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   INDICADORES
+   ========================================================= */
+
+.indicadores {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
 }
 
 .indicador {
-    flex: 1;
-    min-width: 0;
-    height: 62px;
+    height: 58px;
     background: #3a3b4a;
     border: 1px solid #55576a;
-    border-radius: 7px;
+    border-radius: 6px;
 
     display: flex;
     flex-direction: column;
@@ -74,107 +132,311 @@ body {
 }
 
 .numero {
-    color: #ffffff;
-    font-size: 27px;
+    font-size: 20px;
     font-weight: bold;
-    line-height: 28px;
+    line-height: 22px;
 }
 
 .rotulo {
+    font-size: 7px;
     color: #bfc2d0;
-    font-size: 9px;
     font-weight: bold;
-    margin-top: 4px;
     text-transform: uppercase;
+    margin-top: 3px;
+    text-align: center;
 }
 
+
+/* =========================================================
+   BARRA DE META
+   ========================================================= */
+
 .barra-container {
-    width: 100%;
-    height: 6px;
+    height: 7px;
     background: #55576a;
     border-radius: 10px;
-    margin-top: 9px;
     overflow: hidden;
+    margin-top: 8px;
 }
 
 .barra {
-    height: 6px;
+    height: 100%;
     width: 0%;
     background: #43d58a;
-    border-radius: 10px;
-    transition: width 0.5s ease;
+    transition: width 0.3s ease;
 }
 
-.rodape {
-    width: 100%;
+
+/* =========================================================
+   RESULTADOS
+   ========================================================= */
+
+.resumo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.caixa {
+    background: #3a3b4a;
+    border: 1px solid #55576a;
+    border-radius: 6px;
+    padding: 7px 10px;
+    text-align: center;
+}
+
+.caixa .label {
+    font-size: 8px;
+    color: #bfc2d0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.caixa .valor {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status {
+    margin-top: 8px;
+    border-radius: 6px;
+    padding: 7px 10px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    background: #3a3b4a;
+    border: 1px solid #55576a;
+}
+
+
+/* =========================================================
+   GRÁFICO DOS PRÓXIMOS DIAS
+   ========================================================= */
+
+.grafico-area {
+    margin-top: 10px;
+    background: #3a3b4a;
+    border: 1px solid #55576a;
+    border-radius: 7px;
+    padding: 8px 10px 7px 10px;
+}
+
+.grafico-titulo {
+    font-size: 8px;
+    font-weight: bold;
+    color: #bfc2d0;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.grafico {
+    height: 105px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 5px;
+    justify-content: space-around;
+    align-items: flex-end;
+    gap: 5px;
+    border-bottom: 1px solid #55576a;
+    padding: 0 4px;
 }
 
-.rodape span {
-    color: #aeb1c0;
+.coluna {
+    height: 100%;
+    flex: 1;
+    max-width: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.valor-barra {
+    font-size: 7px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 3px;
+    white-space: nowrap;
+}
+
+.barra-vertical {
+    width: 70%;
+    max-width: 34px;
+    min-height: 3px;
+    background: #43d58a;
+    border-radius: 4px 4px 0 0;
+    transition: height 0.4s ease;
+}
+
+.data-barra {
+    font-size: 8px;
+    color: #bfc2d0;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.dia-semana {
+    font-size: 6px;
+    color: #858897;
+    margin-top: 1px;
+}
+
+.grafico-vazio {
+    height: 105px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #bfc2d0;
     font-size: 9px;
 }
 
-@media (max-width: 500px) {
 
-    .painel {
-        padding: 10px;
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+
+.rodape {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    color: #9fa2b1;
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .campos {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .titulo {
-        font-size: 13px;
-    }
-
-    .data {
-        font-size: 10px;
-    }
-
-    .indicador {
-        height: 58px;
+    .indicadores {
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .numero {
-        font-size: 23px;
+        font-size: 17px;
     }
 
     .rotulo {
-        font-size: 8px;
+        font-size: 6px;
     }
+
+    .grafico {
+        height: 95px;
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="painel">
 
-    <div class="cabecalho">
 
-        <div class="titulo" id="titulo">
-            DIAS ÚTEIS
+    <!-- =====================================================
+         CABEÇALHO
+         ===================================================== -->
+
+    <div class="topo">
+
+        <div
+            class="titulo"
+            id="titulo">
+
+            META COMERCIAL
+
         </div>
 
-        <div class="data" id="data">
+        <div
+            class="data"
+            id="data">
+
             --
+
         </div>
 
     </div>
 
+
+
+    <!-- =====================================================
+         CAMPOS DIGITADOS PELO VENDEDOR
+         ===================================================== -->
+
+    <div class="campos">
+
+
+        <div class="campo">
+
+            <label for="meta">
+                Meta do mês
+            </label>
+
+            <input
+                id="meta"
+                type="text"
+                inputmode="decimal"
+                placeholder="R$ 750.000,00"
+                autocomplete="off">
+
+        </div>
+
+
+        <div class="campo">
+
+            <label for="alcancado">
+                Valor alcançado
+            </label>
+
+            <input
+                id="alcancado"
+                type="text"
+                inputmode="decimal"
+                placeholder="R$ 543.321,00"
+                autocomplete="off">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         INDICADORES
+         ===================================================== -->
 
     <div class="indicadores">
 
+
         <div class="indicador">
 
-            <div class="numero" id="total">
+            <div
+                class="numero"
+                id="total">
+
                 0
+
             </div>
 
             <div class="rotulo">
-                Úteis no mês
+                Dias úteis no mês
             </div>
 
         </div>
@@ -182,12 +444,16 @@ body {
 
         <div class="indicador">
 
-            <div class="numero" id="decorridos">
+            <div
+                class="numero"
+                id="decorridos">
+
                 0
+
             </div>
 
             <div class="rotulo">
-                Decorridos
+                Dias úteis passados
             </div>
 
         </div>
@@ -195,18 +461,45 @@ body {
 
         <div class="indicador">
 
-            <div class="numero" id="restantes">
+            <div
+                class="numero"
+                id="restantes">
+
                 0
+
             </div>
 
             <div class="rotulo">
-                Restantes
+                Dias disponíveis
             </div>
 
         </div>
+
+
+        <div class="indicador">
+
+            <div
+                class="numero"
+                id="atingimento">
+
+                0%
+
+            </div>
+
+            <div class="rotulo">
+                Meta atingida
+            </div>
+
+        </div>
+
 
     </div>
 
+
+
+    <!-- =====================================================
+         BARRA DE ATINGIMENTO
+         ===================================================== -->
 
     <div class="barra-container">
 
@@ -218,10 +511,99 @@ body {
     </div>
 
 
+
+    <!-- =====================================================
+         RESULTADOS
+         ===================================================== -->
+
+    <div class="resumo">
+
+
+        <div class="caixa">
+
+            <div class="label">
+                Falta para a meta
+            </div>
+
+            <div
+                class="valor"
+                id="falta">
+
+                R$ 0,00
+
+            </div>
+
+        </div>
+
+
+        <div class="caixa">
+
+            <div class="label">
+                Necessário por dia
+            </div>
+
+            <div
+                class="valor"
+                id="porDia">
+
+                R$ 0,00
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         STATUS
+         ===================================================== -->
+
+    <div
+        class="status"
+        id="status">
+
+        Digite a meta e o valor alcançado.
+
+    </div>
+
+
+
+    <!-- =====================================================
+         GRÁFICO DOS PRÓXIMOS DIAS ÚTEIS
+         ===================================================== -->
+
+    <div class="grafico-area">
+
+
+        <div class="grafico-titulo">
+
+            NECESSÁRIO POR DIA — PRÓXIMOS DIAS ÚTEIS
+
+        </div>
+
+
+        <div
+            class="grafico"
+            id="grafico">
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         RODAPÉ
+         ===================================================== -->
+
     <div class="rodape">
 
-        <span id="percentual">
-            0,0% do mês útil
+        <span id="percentualDias">
+            0% do mês útil
         </span>
 
         <span>
@@ -230,16 +612,20 @@ body {
 
     </div>
 
+
 </div>
+
 
 
 <script>
 
+
 /* =========================================================
-   CONFIGURAÇÃO
+   MESES
    ========================================================= */
 
 const MESES = [
+
     "JAN",
     "FEV",
     "MAR",
@@ -252,6 +638,24 @@ const MESES = [
     "OUT",
     "NOV",
     "DEZ"
+
+];
+
+
+/* =========================================================
+   DIAS DA SEMANA
+   ========================================================= */
+
+const DIAS_SEMANA = [
+
+    "DOM",
+    "SEG",
+    "TER",
+    "QUA",
+    "QUI",
+    "SEX",
+    "SÁB"
+
 ];
 
 
@@ -273,7 +677,10 @@ function calcularPascoa(ano) {
 
     const f = Math.floor((b + 8) / 25);
 
-    const g = Math.floor((b - f + 1) / 3);
+    const g =
+        Math.floor(
+            (b - f + 1) / 3
+        );
 
     const h =
         (
@@ -299,17 +706,20 @@ function calcularPascoa(ano) {
 
     const m =
         Math.floor(
-            (a + 11 * h + 22 * l) / 451
+            (a + 11 * h + 22 * l)
+            / 451
         );
 
     const mes =
         Math.floor(
-            (h + l - 7 * m + 114) / 31
+            (h + l - 7 * m + 114)
+            / 31
         );
 
     const dia =
         (
-            (h + l - 7 * m + 114) % 31
+            (h + l - 7 * m + 114)
+            % 31
         ) + 1;
 
     return new Date(
@@ -324,13 +734,17 @@ function calcularPascoa(ano) {
    ADICIONAR DIAS
    ========================================================= */
 
-function adicionarDias(data, quantidade) {
+function adicionarDias(
+    data,
+    quantidade
+) {
 
     const novaData =
         new Date(data);
 
     novaData.setDate(
-        novaData.getDate() + quantidade
+        novaData.getDate() +
+        quantidade
     );
 
     return novaData;
@@ -338,19 +752,19 @@ function adicionarDias(data, quantidade) {
 
 
 /* =========================================================
-   TRANSFORMAR DATA EM TEXTO
+   CHAVE DA DATA
    ========================================================= */
 
 function chave(data) {
 
     return (
-        data.getFullYear() +
-        "-" +
-        String(
+        data.getFullYear()
+        + "-"
+        + String(
             data.getMonth() + 1
-        ).padStart(2, "0") +
-        "-" +
-        String(
+        ).padStart(2, "0")
+        + "-"
+        + String(
             data.getDate()
         ).padStart(2, "0")
     );
@@ -358,75 +772,69 @@ function chave(data) {
 
 
 /* =========================================================
-   FERIADOS DE SÃO PAULO
+   FERIADOS
    ========================================================= */
 
 function obterFeriados(ano) {
 
     const feriados = [
 
-        /* FERIADOS NACIONAIS */
+        `${ano}-01-01`,
 
-        `${ano}-01-01`,  // Confraternização Universal
+        `${ano}-04-21`,
 
-        `${ano}-04-21`,  // Tiradentes
+        `${ano}-05-01`,
 
-        `${ano}-05-01`,  // Dia do Trabalho
+        `${ano}-09-07`,
 
-        `${ano}-09-07`,  // Independência
+        `${ano}-10-12`,
 
-        `${ano}-10-12`,  // Nossa Senhora Aparecida
+        `${ano}-11-02`,
 
-        `${ano}-11-02`,  // Finados
+        `${ano}-11-15`,
 
-        `${ano}-11-15`,  // Proclamação da República
+        `${ano}-11-20`,
 
-        `${ano}-11-20`,  // Consciência Negra
+        `${ano}-12-25`,
 
-        `${ano}-12-25`,  // Natal
+        `${ano}-01-25`,
 
+        `${ano}-07-09`
 
-        /* SÃO PAULO */
-
-        `${ano}-01-25`,  // Aniversário de São Paulo
-
-        `${ano}-07-09`   // Revolução Constitucionalista
     ];
 
-
-    /* PÁSCOA */
 
     const pascoa =
         calcularPascoa(ano);
 
 
-    /* SEXTA-FEIRA SANTA */
-
-    const sextaFeiraSanta =
-        adicionarDias(
-            pascoa,
-            -2
-        );
-
     feriados.push(
-        chave(sextaFeiraSanta)
+
+        chave(
+            adicionarDias(
+                pascoa,
+                -2
+            )
+        )
+
     );
 
 
-    /* CORPUS CHRISTI */
-
-    const corpusChristi =
-        adicionarDias(
-            pascoa,
-            60
-        );
-
     feriados.push(
-        chave(corpusChristi)
+
+        chave(
+            adicionarDias(
+                pascoa,
+                60
+            )
+        )
+
     );
 
 
-    return new Set(feriados);
+    return new Set(
+        feriados
+    );
 }
 
 
@@ -443,28 +851,24 @@ function ehDiaUtil(
         data.getDay();
 
 
-    /* DOMINGO */
+    if (
+        diaSemana === 0 ||
+        diaSemana === 6
+    ) {
 
-    if (diaSemana === 0) {
         return false;
+
     }
 
-
-    /* SÁBADO */
-
-    if (diaSemana === 6) {
-        return false;
-    }
-
-
-    /* FERIADO */
 
     if (
         feriados.has(
             chave(data)
         )
     ) {
+
         return false;
+
     }
 
 
@@ -473,34 +877,25 @@ function ehDiaUtil(
 
 
 /* =========================================================
-   ATUALIZAR PAINEL
+   CALCULAR DIAS ÚTEIS
    ========================================================= */
 
-function atualizar() {
+function calcularDiasUteis() {
 
     const hoje =
         new Date();
 
-
     const ano =
         hoje.getFullYear();
-
 
     const mes =
         hoje.getMonth();
 
-
     const dia =
         hoje.getDate();
 
-
     const feriados =
         obterFeriados(ano);
-
-
-    /*
-       Último dia do mês
-    */
 
     const ultimoDia =
         new Date(
@@ -510,18 +905,14 @@ function atualizar() {
         ).getDate();
 
 
-    let total =
-        0;
+    let total = 0;
 
+    let passados = 0;
 
-    let decorridos =
-        0;
+    let disponiveis = 0;
 
+    let proximosDias = [];
 
-    /*
-       Percorre todos os dias
-       do mês atual
-    */
 
     for (
         let i = 1;
@@ -548,15 +939,44 @@ function atualizar() {
 
 
             /*
-               Conta os dias úteis
-               até hoje
-            */
+             * Dias úteis já encerrados
+             */
 
             if (
-                i <= dia
+                i < dia
             ) {
 
-                decorridos++;
+                passados++;
+
+            }
+
+
+            /*
+             * O dia de hoje também
+             * conta como disponível
+             */
+
+            if (
+                i >= dia
+            ) {
+
+                disponiveis++;
+
+
+                /*
+                 * Guardamos somente
+                 * os próximos 5 dias úteis
+                 */
+
+                if (
+                    proximosDias.length < 5
+                ) {
+
+                    proximosDias.push(
+                        data
+                    );
+
+                }
 
             }
 
@@ -565,95 +985,872 @@ function atualizar() {
     }
 
 
-    /*
-       Dias úteis restantes
-    */
+    return {
 
-    const restantes =
+        hoje,
+        ano,
+        mes,
+        dia,
+        total,
+        passados,
+        disponiveis,
+        proximosDias
+
+    };
+}
+
+
+/* =========================================================
+   CONVERTER TEXTO PARA NÚMERO
+   ========================================================= */
+
+function converterNumero(texto) {
+
+    if (
+        !texto
+    ) {
+
+        return 0;
+
+    }
+
+
+    let valor =
+        String(texto);
+
+
+    valor =
+        valor.replace(
+            /\s/g,
+            ""
+        );
+
+
+    valor =
+        valor.replace(
+            /R\$/g,
+            ""
+        );
+
+
+    valor =
+        valor.replace(
+            /\./g,
+            ""
+        );
+
+
+    valor =
+        valor.replace(
+            ",",
+            "."
+        );
+
+
+    valor =
+        valor.replace(
+            /[^\d.-]/g,
+            ""
+        );
+
+
+    const numero =
+        parseFloat(valor);
+
+
+    return isNaN(numero)
+        ? 0
+        : numero;
+}
+
+
+/* =========================================================
+   MOEDA
+   ========================================================= */
+
+function moeda(valor) {
+
+    return new Intl.NumberFormat(
+        "pt-BR",
+        {
+            style: "currency",
+            currency: "BRL"
+        }
+    ).format(
+        valor || 0
+    );
+}
+
+
+/* =========================================================
+   FORMATAR CAMPO
+   ========================================================= */
+
+function formatarCampo(campo) {
+
+    const numero =
+        converterNumero(
+            campo.value
+        );
+
+
+    if (
+        campo.value.trim() !== ""
+    ) {
+
+        campo.value =
+            moeda(numero);
+
+    }
+}
+
+
+/* =========================================================
+   SALVAR
+   ========================================================= */
+
+function salvarDados() {
+
+    const dados = {
+
+        meta:
+            converterNumero(
+                document.getElementById(
+                    "meta"
+                ).value
+            ),
+
+        alcancado:
+            converterNumero(
+                document.getElementById(
+                    "alcancado"
+                ).value
+            )
+
+    };
+
+
+    localStorage.setItem(
+        "metaComercialSP",
+        JSON.stringify(dados)
+    );
+}
+
+
+/* =========================================================
+   CARREGAR
+   ========================================================= */
+
+function carregarDados() {
+
+    try {
+
+        const dados =
+            JSON.parse(
+
+                localStorage.getItem(
+                    "metaComercialSP"
+                ) || "{}"
+
+            );
+
+
+        if (
+            dados.meta
+        ) {
+
+            document.getElementById(
+                "meta"
+            ).value =
+                moeda(
+                    dados.meta
+                );
+
+        }
+
+
+        if (
+            dados.alcancado
+        ) {
+
+            document.getElementById(
+                "alcancado"
+            ).value =
+                moeda(
+                    dados.alcancado
+                );
+
+        }
+
+    }
+
+    catch (erro) {
+
+        console.log(
+            "Dados locais indisponíveis."
+        );
+
+    }
+}
+
+
+/* =========================================================
+   DESENHAR GRÁFICO VERTICAL
+   ========================================================= */
+
+function desenharGrafico(
+    proximosDias,
+    valorPorDia
+) {
+
+    const grafico =
+        document.getElementById(
+            "grafico"
+        );
+
+
+    grafico.innerHTML = "";
+
+
+    /*
+     * Se não houver dias disponíveis
+     */
+
+    if (
+        proximosDias.length === 0
+    ) {
+
+        const vazio =
+            document.createElement(
+                "div"
+            );
+
+        vazio.className =
+            "grafico-vazio";
+
+        vazio.textContent =
+            "Não há dias úteis restantes neste mês.";
+
+        grafico.appendChild(
+            vazio
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Altura máxima da barra
+     */
+
+    const alturaMaxima = 78;
+
+
+    /*
+     * Todas as barras terão
+     * o mesmo valor por dia.
+     *
+     * Isso permite visualizar
+     * a distribuição da meta.
+     */
+
+    proximosDias.forEach(
+        function(data) {
+
+
+            const coluna =
+                document.createElement(
+                    "div"
+                );
+
+            coluna.className =
+                "coluna";
+
+
+            const valor =
+                document.createElement(
+                    "div"
+                );
+
+            valor.className =
+                "valor-barra";
+
+            valor.textContent =
+                moeda(
+                    valorPorDia
+                );
+
+
+            const barra =
+                document.createElement(
+                    "div"
+                );
+
+            barra.className =
+                "barra-vertical";
+
+
+            /*
+             * A barra fica proporcional
+             * ao valor necessário.
+             *
+             * Para manter o gráfico
+             * visualmente equilibrado,
+             * usamos uma altura mínima.
+             */
+
+            let altura = 10;
+
+
+            if (
+                valorPorDia > 0
+            ) {
+
+                altura =
+                    Math.min(
+                        alturaMaxima,
+                        Math.max(
+                            18,
+                            70
+                        )
+                    );
+
+            }
+
+
+            barra.style.height =
+                altura + "px";
+
+
+            const dataTexto =
+                document.createElement(
+                    "div"
+                );
+
+            dataTexto.className =
+                "data-barra";
+
+            dataTexto.textContent =
+
+                String(
+                    data.getDate()
+                ).padStart(
+                    2,
+                    "0"
+                )
+                +
+                "/"
+                +
+                String(
+                    data.getMonth() + 1
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const semana =
+                document.createElement(
+                    "div"
+                );
+
+            semana.className =
+                "dia-semana";
+
+            semana.textContent =
+                DIAS_SEMANA[
+                    data.getDay()
+                ];
+
+
+            coluna.appendChild(
+                valor
+            );
+
+            coluna.appendChild(
+                barra
+            );
+
+            coluna.appendChild(
+                dataTexto
+            );
+
+            coluna.appendChild(
+                semana
+            );
+
+
+            grafico.appendChild(
+                coluna
+            );
+
+        }
+    );
+}
+
+
+/* =========================================================
+   ATUALIZAR PAINEL
+   ========================================================= */
+
+function atualizar() {
+
+
+    const dias =
+        calcularDiasUteis();
+
+
+    const meta =
+        converterNumero(
+
+            document.getElementById(
+                "meta"
+            ).value
+
+        );
+
+
+    const alcancado =
+        converterNumero(
+
+            document.getElementById(
+                "alcancado"
+            ).value
+
+        );
+
+
+    /*
+     * Quanto falta
+     */
+
+    const falta =
         Math.max(
-            total - decorridos,
+            meta - alcancado,
             0
         );
 
 
     /*
-       Percentual do mês útil
-    */
+     * Percentual da meta
+     */
 
-    const percentual =
-        total > 0
-            ? (decorridos / total) * 100
+    const percentualMeta =
+        meta > 0
+            ? (
+                alcancado /
+                meta
+            ) * 100
             : 0;
 
 
-    /* =====================================================
-       ATUALIZAÇÃO DA TELA
-       ===================================================== */
+    /*
+     * Percentual dos dias
+     */
 
+    const percentualDias =
+        dias.total > 0
+            ? (
+                dias.passados /
+                dias.total
+            ) * 100
+            : 0;
+
+
+    /*
+     * Valor necessário por dia
+     */
+
+    const necessarioPorDia =
+        dias.disponiveis > 0
+            ? falta /
+              dias.disponiveis
+            : 0;
+
+
+
+    /* =====================================================
+       CABEÇALHO
+       ===================================================== */
 
     document.getElementById(
         "titulo"
     ).textContent =
-        "DIAS ÚTEIS • " +
-        MESES[mes] +
-        "/" +
-        ano;
+
+        "META COMERCIAL • "
+        +
+        MESES[dias.mes]
+        +
+        "/"
+        +
+        dias.ano;
 
 
     document.getElementById(
         "data"
     ).textContent =
-        String(dia).padStart(2, "0") +
-        "/" +
-        String(mes + 1).padStart(2, "0") +
-        "/" +
-        ano;
 
+        String(
+            dias.dia
+        ).padStart(
+            2,
+            "0"
+        )
+        +
+        "/"
+        +
+        String(
+            dias.mes + 1
+        ).padStart(
+            2,
+            "0"
+        )
+        +
+        "/"
+        +
+        dias.ano;
+
+
+
+    /* =====================================================
+       INDICADORES
+       ===================================================== */
 
     document.getElementById(
         "total"
     ).textContent =
-        total;
+        dias.total;
 
 
     document.getElementById(
         "decorridos"
     ).textContent =
-        decorridos;
+        dias.passados;
 
 
     document.getElementById(
         "restantes"
     ).textContent =
-        restantes;
+        dias.disponiveis;
 
 
     document.getElementById(
-        "percentual"
+        "atingimento"
     ).textContent =
-        percentual
-            .toFixed(1)
-            .replace(".", ",") +
-        "% do mês útil";
 
+        percentualMeta
+            .toFixed(1)
+            .replace(
+                ".",
+                ","
+            )
+        +
+        "%";
+
+
+
+    /* =====================================================
+       BARRA DE META
+       ===================================================== */
 
     document.getElementById(
         "barra"
     ).style.width =
-        percentual + "%";
+
+        Math.min(
+            Math.max(
+                percentualMeta,
+                0
+            ),
+            100
+        )
+        +
+        "%";
+
+
+
+    /* =====================================================
+       FALTA
+       ===================================================== */
+
+    document.getElementById(
+        "falta"
+    ).textContent =
+
+        moeda(
+            falta
+        );
+
+
+
+    /* =====================================================
+       NECESSÁRIO POR DIA
+       ===================================================== */
+
+    if (
+        meta > 0 &&
+        falta > 0 &&
+        dias.disponiveis > 0
+    ) {
+
+        document.getElementById(
+            "porDia"
+        ).textContent =
+
+            moeda(
+                necessarioPorDia
+            );
+
+    }
+
+    else if (
+        meta > 0 &&
+        falta <= 0
+    ) {
+
+        document.getElementById(
+            "porDia"
+        ).textContent =
+            "META OK";
+
+    }
+
+    else {
+
+        document.getElementById(
+            "porDia"
+        ).textContent =
+            "—";
+
+    }
+
+
+
+    /* =====================================================
+       PERCENTUAL DOS DIAS
+       ===================================================== */
+
+    document.getElementById(
+        "percentualDias"
+    ).textContent =
+
+        percentualDias
+            .toFixed(1)
+            .replace(
+                ".",
+                ","
+            )
+        +
+        "% do mês útil";
+
+
+
+    /* =====================================================
+       STATUS
+       ===================================================== */
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    if (
+        meta <= 0
+    ) {
+
+        status.textContent =
+            "Digite a meta e o valor alcançado.";
+
+        status.style.color =
+            "#ffffff";
+
+    }
+
+    else if (
+        alcancado >= meta
+    ) {
+
+        const excedente =
+            alcancado - meta;
+
+
+        status.textContent =
+
+            "🟢 META ATINGIDA • "
+            +
+            moeda(
+                excedente
+            )
+            +
+            " ACIMA DA META";
+
+
+        status.style.color =
+            "#43d58a";
+
+    }
+
+    else if (
+        dias.disponiveis === 0
+    ) {
+
+        status.textContent =
+
+            "🔴 PRAZO ENCERRADO • FALTAM "
+            +
+            moeda(
+                falta
+            );
+
+
+        status.style.color =
+            "#ff5a5f";
+
+    }
+
+    else {
+
+        status.textContent =
+
+            "🟠 FALTAM "
+            +
+            moeda(
+                falta
+            )
+            +
+            " • NECESSÁRIO "
+            +
+            moeda(
+                necessarioPorDia
+            )
+            +
+            "/DIA";
+
+
+        status.style.color =
+            "#ffd34d";
+
+    }
+
+
+
+    /* =====================================================
+       GRÁFICO
+       ===================================================== */
+
+    desenharGrafico(
+
+        dias.proximosDias,
+
+        necessarioPorDia
+
+    );
 
 }
 
 
 /* =========================================================
-   EXECUTA IMEDIATAMENTE
+   CAMPOS
    ========================================================= */
+
+const campoMeta =
+    document.getElementById(
+        "meta"
+    );
+
+
+const campoAlcancado =
+    document.getElementById(
+        "alcancado"
+    );
+
+
+const campos = [
+
+    campoMeta,
+
+    campoAlcancado
+
+];
+
+
+campos.forEach(
+    function(campo) {
+
+
+        /*
+         * Atualiza imediatamente
+         * enquanto digita
+         */
+
+        campo.addEventListener(
+            "input",
+            function() {
+
+                atualizar();
+
+            }
+        );
+
+
+        /*
+         * Formata e salva
+         * quando sai do campo
+         */
+
+        campo.addEventListener(
+            "blur",
+            function() {
+
+                formatarCampo(
+                    campo
+                );
+
+                salvarDados();
+
+                atualizar();
+
+            }
+        );
+
+
+        /*
+         * Também salva
+         * quando houver alteração
+         */
+
+        campo.addEventListener(
+            "change",
+            function() {
+
+                formatarCampo(
+                    campo
+                );
+
+                salvarDados();
+
+                atualizar();
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+   ========================================================= */
+
+carregarDados();
 
 atualizar();
 
 
 /* =========================================================
-   ATUALIZA AUTOMATICAMENTE A CADA 1 MINUTO
+   ATUALIZAÇÃO AUTOMÁTICA
    ========================================================= */
 
 setInterval(
@@ -663,5 +1860,7 @@ setInterval(
 
 </script>
 
+
 </body>
+
 </html>
